@@ -140,6 +140,9 @@ func evalPostfix(tokens []Token) (float64, error) {
 			case "*":
 				result = a * b
 			case "/":
+				if b == 0 {
+					return 0, custom_errors.InvalidExpression
+				}
 				result = a / b
 			default:
 				return 0, custom_errors.UnknownOperator
